@@ -35,21 +35,21 @@ def square_root(n):
 
 
 def parse_input(data):
-    data = data.replace(" ", "").replace("^", "")
+    data = data.replace(" ", "").replace("^", "").replace("-", "+-")
     data = data.split("=")
-    left = data[0]
+    # left = data[0]
     # right = data[1]
 
-    coeffs = []
-    degrees = []
+    # coeffs = []
+    # degrees = []
 
-    for i, nbr in enumerate(left):
-        print(i, nbr)
-        if nbr == 'X':
-            coeffs.append(left[i - 2])
-            degrees.append(left[i + 1])
-            print(coeffs)
-            print(degrees)
+    # for i, nbr in enumerate(left):
+    #     print(i, nbr)
+    #     if nbr == 'X':
+    #         coeffs.append(left[i - 2])
+    #         degrees.append(left[i + 1])
+    #         print(coeffs)
+    #         print(degrees)
 
     return (data)
 
