@@ -9,6 +9,11 @@ x_1 = []
 x_2 = []
 
 
+def read_input():
+    arg = sys.argv[1] if len(sys.argv) > 1 else "somevalue"
+    return arg
+
+
 # Function to return the square root of
 # a number using Newtons method
 def square_root(n):
@@ -95,9 +100,30 @@ def sort_terms(left, right):
             sys.exit('No X in a term, EXIT')
 
 
-def read_input():
-    arg = sys.argv[1] if len(sys.argv) > 1 else "somevalue"
-    return arg
+def remove_empty_items(list_name):
+    cleaned_list = [x for x in list_name if x]
+    return cleaned_list
+
+
+def calc_constants():
+    constant = 0
+    for x in constants:
+        constant += int(x)
+    return constant
+
+
+def calc_first_degree():
+    first_degree = 0
+    for x in x_1:
+        first_degree += int(x)
+    return first_degree
+
+
+def calc_second_degree():
+    second_degree = 0
+    for x in x_2:
+        second_degree += float(x)
+    return second_degree
 
 
 def main():
@@ -106,10 +132,12 @@ def main():
     # print(data_parsed)
     left_data = left_side(data_parsed[0])
     right_data = right_side(data_parsed[1])
-    sort_terms(left_data, right_data)
-    print(constants)
-    print(x_1)
-    print(x_2)
+    cleaned_right_data = remove_empty_items(right_data)
+    cleaned_left_data = remove_empty_items(left_data)
+    sort_terms(cleaned_left_data, cleaned_right_data)
+    print('constant', calc_constants())
+    print('1st degree', calc_first_degree())
+    print('2nd degree', calc_second_degree())
     # print(square_root(25))
 
 
