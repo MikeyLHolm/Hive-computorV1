@@ -11,7 +11,6 @@ def square_root(n):
 
     # Setting tolerance level
     tolerance_level = 0.00001
-
     # Assuming the sqrt of n as n only
     x = n
 
