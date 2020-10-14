@@ -1,8 +1,12 @@
 #!/usr/bin/env python3
 
-# "5 * X^0 + 4 * X^1 - 9.3 * X^2 = 1 * X^0"
+# "5 * X^0 + 4 * X^1 - 9.3 * X^2 = 1 * X^0 - 3 * X^2"
 # import re
 import sys
+
+constants = []
+x_1 = []
+x_2 = []
 
 
 # Function to return the square root of
@@ -57,13 +61,38 @@ def parse_input(data):
 def left_side(left):
     print("left " + left)
     terms = left.split('+')
-    print("terms are: ", terms)
     # terms = [x.strip() for x in terms]
     # print("terms are: " + terms)
+    return terms
 
 
 def right_side(right):
     print("right " + right)
+    terms = right.split('+')
+    return terms
+
+
+def sort_terms(left, right):
+    print("L terms are: ", left)
+    print("R terms are: ", right)
+
+    for term in left:
+        if term.find('X') is not -1:
+            print(term)
+            for i, c in enumerate(term):
+                if c == 'X':
+                    print(c)
+                    print(term[i + 1])
+                    if term[i + 1] == '0':
+                        constants.append(term[0:i - 1])
+                    elif term[i + 1] == '1':
+                        x_1.append(term[0:i - 1])
+                    elif term[i + 1] == '2':
+                        x_2.append(term[0:i - 1])
+                    else:
+                        sys.exit('Other degrees not supported, EXIT')
+        else:
+            sys.exit('No X in a term, EXIT')
 
 
 def read_input():
@@ -74,10 +103,14 @@ def read_input():
 def main():
     data = read_input()
     data_parsed = parse_input(data)
-    print(data_parsed)
-    left_side(data_parsed[0])
-    right_side(data_parsed[1])
-    print(square_root(25))
+    # print(data_parsed)
+    left_data = left_side(data_parsed[0])
+    right_data = right_side(data_parsed[1])
+    sort_terms(left_data, right_data)
+    print(constants)
+    print(x_1)
+    print(x_2)
+    # print(square_root(25))
 
 
 if __name__ == "__main__":
