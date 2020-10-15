@@ -12,6 +12,8 @@ x_2 = []
 def read_input():
     arg = sys.argv[1] if len(sys.argv) > 1 else "somevalue"
     return arg
+    # equation = input("Enter the equation: ")
+    # return equation
 
 
 # Function to return the square root of
@@ -46,58 +48,67 @@ def square_root(n):
 def parse_input(data):
     data = data.replace(" ", "").replace("^", "").replace("-", "+-")
     data = data.split("=")
-    # left = data[0]
-    # right = data[1]
-
-    # coeffs = []
-    # degrees = []
-
-    # for i, nbr in enumerate(left):
-    #     print(i, nbr)
-    #     if nbr == 'X':
-    #         coeffs.append(left[i - 2])
-    #         degrees.append(left[i + 1])
-    #         print(coeffs)
-    #         print(degrees)
-
     return (data)
 
 
 def left_side(left):
     print("left " + left)
-    terms = left.split('+')
-    # terms = [x.strip() for x in terms]
-    # print("terms are: " + terms)
+    terms = left.split("+")
     return terms
 
 
 def right_side(right):
     print("right " + right)
-    terms = right.split('+')
+    terms = right.split("+")
     return terms
 
 
-def sort_terms(left, right):
+def save_terms_left(left):
     print("L terms are: ", left)
-    print("R terms are: ", right)
 
     for term in left:
-        if term.find('X') is not -1:
+        if term.find("X") != -1:
             print(term)
             for i, c in enumerate(term):
-                if c == 'X':
+                if c == "X":
                     print(c)
                     print(term[i + 1])
-                    if term[i + 1] == '0':
+                    if term[i + 1] == "0":
                         constants.append(term[0:i - 1])
-                    elif term[i + 1] == '1':
+                    elif term[i + 1] == "1":
                         x_1.append(term[0:i - 1])
-                    elif term[i + 1] == '2':
+                    elif term[i + 1] == "2":
                         x_2.append(term[0:i - 1])
                     else:
-                        sys.exit('Other degrees not supported, EXIT')
+                        sys.exit("Other degrees not supported, EXIT")
         else:
-            sys.exit('No X in a term, EXIT')
+            sys.exit("No X in a term, EXIT")
+
+
+def opposite_sign(term):
+    if term[0] == "-":
+        return term[1:]
+    else:
+        return ("-" + term)
+
+
+def save_terms_right(right):
+    print("R terms are: ", right)
+
+    for term in right:
+        if term.find("X") != -1:
+            for i, c in enumerate(term):
+                if c == "X":
+                    if term[i + 1] == "0":
+                        constants.append(opposite_sign(term[0:i - 1]))
+                    elif term[i + 1] == "1":
+                        x_1.append(opposite_sign(term[0:i - 1]))
+                    elif term[i + 1] == "2":
+                        x_2.append(opposite_sign(term[0:i - 1]))
+                    else:
+                        sys.exit("Other degrees not supported, EXIT")
+        else:
+            sys.exit("No X in a term, EXIT")
 
 
 def remove_empty_items(list_name):
@@ -134,11 +145,19 @@ def main():
     right_data = right_side(data_parsed[1])
     cleaned_right_data = remove_empty_items(right_data)
     cleaned_left_data = remove_empty_items(left_data)
-    sort_terms(cleaned_left_data, cleaned_right_data)
-    print('constant', calc_constants())
-    print('1st degree', calc_first_degree())
-    print('2nd degree', calc_second_degree())
+    save_terms_left(cleaned_left_data)
+    save_terms_right(cleaned_right_data)
+    print("constant", calc_constants())
+    print("1st degree", calc_first_degree())
+    print("2nd degree", calc_second_degree())
     # print(square_root(25))
+    print("Reduced form: ")
+    print("Polynomial degree: ")
+    print("The polynomial degree is stricly greater than 2, I can't solve.")
+    print("The solution is:")
+    print("Discriminant is strictly positive, the two solutions are:")
+    if not x_1:
+        print("no 1st degree X")
 
 
 if __name__ == "__main__":
