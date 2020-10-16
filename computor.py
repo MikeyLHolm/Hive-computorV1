@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 
 # "5 * X^0 + 4 * X^1 - 9.3 * X^2 = 1 * X^0 - 3 * X^2"
-# import re
+from reduced_form import reduced_form
+# from square_root import square_root
 import sys
 
 constants = []
@@ -14,35 +15,6 @@ def read_input():
     return arg
     # equation = input("Enter the equation: ")
     # return equation
-
-
-# Function to return the square root of
-# a number using Newtons method
-def square_root(n):
-
-    # Setting tolerance level
-    tolerance_level = 0.00001
-
-    # Assuming the sqrt of n as n only
-    x = n
-
-    # To count the number of iterations
-    count = 0
-
-    while (1):
-        count += 1
-
-        # Calculate more closed x
-        root = 0.5 * (x + (n / x))
-
-        # Check for closeness
-        if (abs(root - x) < tolerance_level):
-            break
-
-        # Update root
-        x = root
-
-    return root
 
 
 def parse_input(data):
@@ -137,27 +109,60 @@ def calc_second_degree():
     return second_degree
 
 
+def solve_equation():
+    print("Hello, solving it now. BRB")
+
+
+def return_degree(side):
+    degree = -1
+    temp_degree = ""
+    side_len = len(side)
+    if side.find("X") != -1:
+        for i, c in enumerate(side):
+            if c == "X":
+                j = i
+                while (j + 1) < side_len and side[j + 1].isdigit():
+                    temp_degree = temp_degree + side[j + 1]
+                    j += 1
+                if int(temp_degree) > degree:
+                    degree = int(temp_degree)
+                temp_degree = ""
+    else:
+        return 0
+    return(degree)
+
+
+def get_degree(data):
+    degree_l = return_degree(data[0])
+    degree_r = return_degree(data[1])
+    if degree_l >= degree_r:
+        return degree_l
+    else:
+        return degree_r
+
+
 def main():
     data = read_input()
     data_parsed = parse_input(data)
-    # print(data_parsed)
-    left_data = left_side(data_parsed[0])
-    right_data = right_side(data_parsed[1])
-    cleaned_right_data = remove_empty_items(right_data)
-    cleaned_left_data = remove_empty_items(left_data)
-    save_terms_left(cleaned_left_data)
-    save_terms_right(cleaned_right_data)
-    print("constant", calc_constants())
-    print("1st degree", calc_first_degree())
-    print("2nd degree", calc_second_degree())
+    # left_data = left_side(data_parsed[0])
+    # right_data = right_side(data_parsed[1])
+    # cleaned_right_data = remove_empty_items(right_data)
+    # cleaned_left_data = remove_empty_items(left_data)
+    # save_terms_left(cleaned_left_data)
+    # save_terms_right(cleaned_right_data)
+    # print("constant", calc_constants())
+    # print("1st degree", calc_first_degree())
+    # print("2nd degree", calc_second_degree())
     # print(square_root(25))
-    print("Reduced form: ")
-    print("Polynomial degree: ")
-    print("The polynomial degree is stricly greater than 2, I can't solve.")
+    reduced_form()
+    # print("Reduced form:")
+    degree = get_degree(data_parsed)
+    print("Polynomial degree:", degree)
+    if degree > 2:
+        raise SystemExit("The polynomial degree is stricly greater than 2, I can't solve.")
     print("The solution is:")
     print("Discriminant is strictly positive, the two solutions are:")
-    if not x_1:
-        print("no 1st degree X")
+    solve_equation()
 
 
 if __name__ == "__main__":
