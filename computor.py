@@ -2,6 +2,7 @@
 
 # "5 * X^0 + 4 * X^1 - 9.3 * X^2 = 1 * X^0 - 3 * X^2"
 from reduced_form import reduced_form
+from linked_list import Node, SLinkedList, parse_to_linked_list
 # from square_root import square_root
 import sys
 
@@ -144,10 +145,13 @@ def get_degree(data):
 def main():
     data = read_input()
     data_parsed = parse_input(data)
-    # left_data = left_side(data_parsed[0])
-    # right_data = right_side(data_parsed[1])
-    # cleaned_right_data = remove_empty_items(right_data)
-    # cleaned_left_data = remove_empty_items(left_data)
+    left_data = left_side(data_parsed[0])
+    right_data = right_side(data_parsed[1])
+    cleaned_right_data = remove_empty_items(right_data)
+    cleaned_left_data = remove_empty_items(left_data)
+    print(cleaned_left_data)
+    print(cleaned_right_data)
+    list_equation = parse_to_linked_list(cleaned_left_data, cleaned_right_data)
     # save_terms_left(cleaned_left_data)
     # save_terms_right(cleaned_right_data)
     # print("constant", calc_constants())
