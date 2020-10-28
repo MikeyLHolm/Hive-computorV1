@@ -3,6 +3,11 @@
 # "5 * X^0 + 4 * X^1 - 9.3 * X^2 = 1 * X^0 - 3 * X^2"
 # 1 * X^2 + 2 * X^1 - 3 * X^0 = 0
 # python3 computor.py "8 * X^0 - 6 * X^1 + 0 * X^2 - 5.6 * X^3 = 3 * X^0"
+
+# FROM SUBJECT:
+# python3 computor.py "5 * X^0 + 4 * X^1 - 9.3 * X^2 = 1 * X^0"
+
+
 from reduced_form import reduced_form
 from linked_list import Node, SLinkedList, parse_to_linked_list
 from solve_equation import solve_equation
