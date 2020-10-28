@@ -44,7 +44,9 @@ def handle_discriminant(discriminant):
         return 0
 
 
-def solve_perfect_equation(a, b, c, discriminant):
+def solve_perfect_equation(a, b, discriminant):
+    # real roots
+    # x = -b +- D / 2a
     solution_1 = None
     solution_2 = None
     solution_1 = (-b + square_root(discriminant)) / (2 * a)
@@ -53,8 +55,20 @@ def solve_perfect_equation(a, b, c, discriminant):
     print(round(solution_2, 6))
 
 
+def solve_one_solution(a, b):
+    # x = -b / 2a
+    solution_1 = None
+    solution_1 = -b / (2 * a)
+    print('The solution is:', round(solution_1, 6))
+
+
+def solve_complex_roots():
+    # when D < 0
+    print('solving complex things. add prime factorializations')
+
+
 def solve_equation(equation_list):
-    print("Hello, solving it now. BRB")
+    print('Hello, solving it now. BRB')
 
     print('find type of the 3 possible')
 
@@ -69,17 +83,18 @@ def solve_equation(equation_list):
     # print(type(b))
     # print('c =', c)
     # print(type(c))
-    # print('discriminant is:', discriminant)
+    print('discriminant is:', discriminant)
     # print(type(discriminant))
     solution_type = handle_discriminant(discriminant)
     if solution_type == 2:
         print('solution for type1 ( 2 solutions ):')
-        solve_perfect_equation(a, b, c, discriminant)
+        solve_perfect_equation(a, b, discriminant)
     elif solution_type == 1:
         print('solution for type2 ( 1 solutions ):')
+        solve_one_solution(a, b)
     elif solution_type == 0:
         print('solution for type3 ( 0 solutions ):')
     else:
         print('WTF HAPPENED? BUG AT SOLUTIONS')
 
-    print("The solution is:")
+    #print('The solution is:')
