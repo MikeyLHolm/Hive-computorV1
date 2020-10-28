@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 # "5 * X^0 + 4 * X^1 - 9.3 * X^2 = 1 * X^0 - 3 * X^2"
-
+# 1 * X^2 + 2 * X^1 - 3 * X^0 = 0
 # python3 computor.py "8 * X^0 - 6 * X^1 + 0 * X^2 - 5.6 * X^3 = 3 * X^0"
 from reduced_form import reduced_form
 from linked_list import Node, SLinkedList, parse_to_linked_list
@@ -146,13 +146,12 @@ def str_to_float_or_int(value_str, ShowExtended=False):
         integer = numberParsed[0]
         mantissa = numberParsed[1]
         if integer.strip('-').isdecimal() and mantissa.isdecimal():
-            print(integer.strip('-'))
             if int(mantissa) == 0:
                 isfloat = False
                 value = int(integer)
-            elif integer.strip('-').isdecimal():
-                isfloat = False
-                value = int(integer)
+        elif integer.strip('-').isdecimal():
+            isfloat = False
+            value = int(integer)
     else:
         isfloat = False
         value = int(value_str)
@@ -212,7 +211,7 @@ def main():
     handle_int_or_float(equation_list)
     reduced_form(equation_list)
     handle_degree(equation_list)
-    solve_equation()
+    solve_equation(equation_list)
 
 
 if __name__ == "__main__":
