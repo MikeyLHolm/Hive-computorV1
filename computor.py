@@ -3,6 +3,7 @@
 # "5 * X^0 + 4 * X^1 - 9.3 * X^2 = 1 * X^0 - 3 * X^2"
 from reduced_form import reduced_form
 from linked_list import Node, SLinkedList, parse_to_linked_list
+from solve_equation import solve_equation
 from term_object import get_list_of_objects
 # from square_root import square_root
 import sys
@@ -19,22 +20,24 @@ def read_input():
     # return equation
 
 
+# def left_side(left):
+#     print("left " + left)
+#     terms = left.split("+")
+#     return terms
+
+
+# def right_side(right):
+#     print("right " + right)
+#     terms = right.split("+")
+#     return terms
+
+
 def parse_input(data):
     data = data.replace(" ", "").replace("^", "").replace("-", "+-")
     data = data.split("=")
-    return (data)
-
-
-def left_side(left):
-    print("left " + left)
-    terms = left.split("+")
-    return terms
-
-
-def right_side(right):
-    print("right " + right)
-    terms = right.split("+")
-    return terms
+    #return 2 values thru left and right side
+    #return left_side(data[0]), right_side(data[1])
+    return data[0].split("+"), data[1].split("+")
 
 
 def save_terms_left(left):
@@ -111,10 +114,6 @@ def calc_second_degree():
     return second_degree
 
 
-def solve_equation():
-    print("Hello, solving it now. BRB")
-
-
 def return_degree(side):
     degree = -1
     temp_degree = ""
@@ -143,22 +142,33 @@ def get_degree(data):
         return degree_r
 
 
+  # add protection for 0 as coeff.
+def sort_get_degree(term):
+    return (term.degree)
+
+
 def main():
     data = read_input()
-    data_parsed = parse_input(data)
-    left_data = left_side(data_parsed[0])
-    right_data = right_side(data_parsed[1])
+    # return 3 nxt functions from 1? return left_side(data_parsed[0]), right_side(data_parsed[1])
+    left_data, right_data = parse_input(data)
+    # data_parsed = parse_input(data)
+    # left_data = left_side(data_parsed[0])
+    # right_data = right_side(data_parsed[1])
     cleaned_right_data = remove_empty_items(right_data)
     cleaned_left_data = remove_empty_items(left_data)
     print(cleaned_left_data)
     print(cleaned_right_data)
     #equation_list = parse_to_linked_list(cleaned_left_data, cleaned_right_data)
-
+    degree = -1
     equation_list = []
     equation_list = get_list_of_objects(cleaned_left_data, cleaned_right_data)
+    equation_list.sort(key=sort_get_degree, reverse=True)
     for obj in equation_list:
-        print('OBJECT PRINT')
+        if int(obj.degree) > degree:
+            degree = int(obj.degree)
+        #if (obj.coeff).is_integer():
         print(obj.coeff, 'X^', obj.degree)
+
     #print (equation_list)
     # save_terms_left(cleaned_left_data)
     # save_terms_right(cleaned_right_data)
@@ -166,10 +176,10 @@ def main():
     # print("1st degree", calc_first_degree())
     # print("2nd degree", calc_second_degree())
     # print(square_root(25))
-    #sort_list_for_degree()
-    reduced_form()
+    #sort_list_by_degree()
+    reduced_form(equation_list)
     # print("Reduced form:")
-    degree = get_degree(data_parsed)
+    #degree = get_degree(data_parsed)
     print("Polynomial degree:", degree)
     if degree > 2:
         raise SystemExit("The polynomial degree is stricly greater than 2, I can't solve.")
