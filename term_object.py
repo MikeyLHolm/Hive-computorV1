@@ -34,7 +34,10 @@ def opposite_sign(term):
 
 
 def handle_dupl_degree(object_list, term_object):
+    # protect when coeff = 0
     for obj in object_list:
+        if term_object.coeff == '0':
+            return 1
         if obj.degree == term_object.degree:
             obj.coeff = float(obj.coeff) + float(term_object.coeff)
             return 1
@@ -59,4 +62,7 @@ def get_list_of_objects(left_data, right_data):
         if not handle_dupl_degree(object_list, term_object):
             object_list.append(term_object)
 
-    return object_list
+    #remove terms with coeff of 0
+    cleaned_object_list = [x for x in object_list if x.coeff != 0]
+
+    return cleaned_object_list
