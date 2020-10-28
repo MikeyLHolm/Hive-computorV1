@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 
 # "5 * X^0 + 4 * X^1 - 9.3 * X^2 = 1 * X^0 - 3 * X^2"
+
+# python3 computor.py "8 * X^0 - 6 * X^1 + 0 * X^2 - 5.6 * X^3 = 3 * X^0"
 from reduced_form import reduced_form
 from linked_list import Node, SLinkedList, parse_to_linked_list
 from solve_equation import solve_equation
@@ -18,18 +20,6 @@ def read_input():
     return arg
     # equation = input("Enter the equation: ")
     # return equation
-
-
-# def left_side(left):
-#     print("left " + left)
-#     terms = left.split("+")
-#     return terms
-
-
-# def right_side(right):
-#     print("right " + right)
-#     terms = right.split("+")
-#     return terms
 
 
 def parse_input(data):
@@ -147,9 +137,56 @@ def sort_get_degree(term):
     return (term.degree)
 
 
+# Change mantissa to better name as this truly isn't mantissa afaik!
+def str_to_float_or_int(value_str, ShowExtended=False):
+    isfloat = True
+    value = float(value_str)
+    numberParsed = value_str.split(".")
+    if len(numberParsed) > 1:
+        integer = numberParsed[0]
+        mantissa = numberParsed[1]
+        if integer.strip('-').isdecimal() and mantissa.isdecimal():
+            print(integer.strip('-'))
+            if int(mantissa) == 0:
+                isfloat = False
+                value = int(integer)
+            elif integer.strip('-').isdecimal():
+                isfloat = False
+                value = int(integer)
+    else:
+        isfloat = False
+        value = int(value_str)
+    if ShowExtended:
+        print("testValue: " + value_str + " | splits into: ",
+                numberParsed,"\n value: ", value)
+        if isfloat:
+            print("It's a <float> (;o)\n")
+        else:
+            print("It's an <int> {:o)~\n")
+
+    return value
+
+
+def handle_int_or_float(equation_list):
+    for term in equation_list:
+        term.coeff = str_to_float_or_int(str(term.coeff))
+
+
+def handle_degree(equation_list):
+    degree = -1
+
+    for obj in equation_list:
+        if int(obj.degree) > degree:
+            degree = int(obj.degree)
+        print(obj.coeff, 'X^', obj.degree)
+
+    print("Polynomial degree:", degree)
+    if degree > 2:
+        raise SystemExit("The polynomial degree is stricly greater than 2, I can't solve.")
+
+
 def main():
     data = read_input()
-    # return 3 nxt functions from 1? return left_side(data_parsed[0]), right_side(data_parsed[1])
     left_data, right_data = parse_input(data)
     # data_parsed = parse_input(data)
     # left_data = left_side(data_parsed[0])
@@ -158,16 +195,11 @@ def main():
     cleaned_left_data = remove_empty_items(left_data)
     print(cleaned_left_data)
     print(cleaned_right_data)
-    #equation_list = parse_to_linked_list(cleaned_left_data, cleaned_right_data)
-    degree = -1
+
     equation_list = []
+
     equation_list = get_list_of_objects(cleaned_left_data, cleaned_right_data)
     equation_list.sort(key=sort_get_degree, reverse=True)
-    for obj in equation_list:
-        if int(obj.degree) > degree:
-            degree = int(obj.degree)
-        #if (obj.coeff).is_integer():
-        print(obj.coeff, 'X^', obj.degree)
 
     #print (equation_list)
     # save_terms_left(cleaned_left_data)
@@ -177,14 +209,9 @@ def main():
     # print("2nd degree", calc_second_degree())
     # print(square_root(25))
     #sort_list_by_degree()
+    handle_int_or_float(equation_list)
     reduced_form(equation_list)
-    # print("Reduced form:")
-    #degree = get_degree(data_parsed)
-    print("Polynomial degree:", degree)
-    if degree > 2:
-        raise SystemExit("The polynomial degree is stricly greater than 2, I can't solve.")
-    print("The solution is:")
-    print("Discriminant is strictly positive, the two solutions are:")
+    handle_degree(equation_list)
     solve_equation()
 
 

@@ -8,7 +8,7 @@ def reduced_form(equation_list):
         sign = ' + '
         if float(term.coeff) < 0:
             sign = ' - '
-        reduced_form = reduced_form + sign + str(term.coeff) + ' * X^' + str(term.degree)
+        reduced_form = reduced_form + sign + str(term.coeff).strip('-') + ' * X^' + str(term.degree)
 
     reduced_form = reduced_form + ' = 0'
     print(reduced_form)

@@ -8,7 +8,6 @@ class TermObject(object):
 
 
 def get_term_object(coeff, degree):
-
     term = TermObject(coeff, degree)
     return term
 
@@ -20,7 +19,7 @@ def get_coeff_and_degree(term):
                 coeff = term[0:i - 1]
                 degree = term[i + 1:]
     else:
-        sys.exit("No X in a term, EXIT")
+        raise SystemExit("No X in a term, EXIT")
     return coeff, degree
 
 
@@ -34,8 +33,6 @@ def opposite_sign(term):
 
 
 def handle_dupl_degree(object_list, term_object):
-    #iterate list to find dup degree
-    #if found, update coeff
     for obj in object_list:
         if obj.degree == term_object.degree:
             obj.coeff = float(obj.coeff) + float(term_object.coeff)
@@ -43,7 +40,6 @@ def handle_dupl_degree(object_list, term_object):
     return 0
 
 def get_list_of_objects(left_data, right_data):
-    #init values
     object_list = []
     coeff = ""
     degree = ""
