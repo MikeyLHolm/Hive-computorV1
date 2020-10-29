@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 import unittest
-from object_related import TermObject
+from object_related import TermObject, opposite_sign
+
 
 class TestTermObject(unittest.TestCase):
 
@@ -29,6 +30,16 @@ class TestTermObject(unittest.TestCase):
 
         self.assertEqual(self.obj1.degree, 0)
         self.assertEqual(self.obj2.degree, 1)
+
+
+class TestCoolFunction(unittest.TestCase):
+
+    def test_opposite_sign(self):
+        print('\ntest_opposite_sign')
+        self.assertEqual(opposite_sign('-9'), '9')
+        self.assertEqual(opposite_sign('-0'), '0')
+        self.assertEqual(opposite_sign('0'), '0')
+
 
 if __name__ == '__main__':
     unittest.main()

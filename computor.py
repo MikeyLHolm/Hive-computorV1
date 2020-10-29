@@ -12,6 +12,11 @@
 # 42 * X^0 = 42 * X^0
 
 
+# TO DO:
+# add protection for float degrees
+#
+#
+
 import sys
 from degree import handle_degree, sort_get_degree
 from int_or_float import handle_int_or_float

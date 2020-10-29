@@ -20,17 +20,21 @@ def get_coeff_and_degree(term):
                 coeff = term[0:i - 1]
                 degree = term[i + 1:]
     else:
-        raise SystemExit("No X in a term, EXIT")
+        raise SystemExit('No X in a term, EXIT')
+    zero = '-0'
+    if coeff == zero:
+        print('rr')
+        coeff == '0'
     return coeff, degree
 
 
 def opposite_sign(term):
     if term == '0':
-        return
-    if term[0] == "-":
+        return (term)
+    if term[0] == '-':
         return term[1:]
     else:
-        return ("-" + term)
+        return ('-' + term)
 
 
 def handle_dupl_degree(object_list, term_object):
@@ -43,6 +47,7 @@ def handle_dupl_degree(object_list, term_object):
             return 1
     return 0
 
+
 def get_list_of_objects(left_data, right_data):
     object_list = []
     coeff = ""
@@ -50,6 +55,11 @@ def get_list_of_objects(left_data, right_data):
 
     for data in left_data:
         coeff, degree = get_coeff_and_degree(data)
+        print(coeff, degree)
+        print(type(coeff))
+        if coeff == '0':
+            print('coeff 0')
+            continue
         term_object = get_term_object(coeff, degree)
         if not handle_dupl_degree(object_list, term_object):
             object_list.append(get_term_object(coeff, degree))

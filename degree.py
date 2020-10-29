@@ -1,3 +1,6 @@
+import sys
+
+
 # add protection for 0 as coeff.
 def sort_get_degree(term):
     return (term.degree)
@@ -7,8 +10,11 @@ def handle_degree(equation_list):
     degree = -1
 
     for obj in equation_list:
-        if int(obj.degree) > degree:
-            degree = int(obj.degree)
+        try:
+            if int(obj.degree) > degree:
+                degree = int(obj.degree)
+        except ValueError:
+            raise SystemExit('Degree must be an Integer!')
 
     print("Polynomial degree:", degree)
     if degree > 2:
