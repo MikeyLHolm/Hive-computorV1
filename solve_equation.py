@@ -1,4 +1,5 @@
 import sys
+from prime_factorization import prime_factorization
 from square_root import square_root
 
 
@@ -62,9 +63,10 @@ def solve_one_solution(a, b):
     print('The solution is:', round(solution_1, 6))
 
 
-def solve_complex_roots():
+def solve_complex_roots(a, b, c, discriminant):
     # when D < 0
     print('solving complex things. add prime factorializations')
+    prime_factorization(a, b, discriminant)
 
 
 def solve_equation(equation_list):
@@ -94,6 +96,7 @@ def solve_equation(equation_list):
         solve_one_solution(a, b)
     elif solution_type == 0:
         print('solution for type3 ( 0 solutions ):')
+        solve_complex_roots(a, b, c, discriminant)
     else:
         print('WTF HAPPENED? BUG AT SOLUTIONS')
 

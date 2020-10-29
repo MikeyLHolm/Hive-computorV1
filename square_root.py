@@ -2,6 +2,9 @@
 # a number using Newtons method
 def square_root(n):
 
+    if n < 0:
+        raise SystemExit("n is smaller than 0. Can't solve sqrt.")
+
     # Setting tolerance level
     tolerance_level = 0.00001
 
