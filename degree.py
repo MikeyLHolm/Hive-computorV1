@@ -13,4 +13,6 @@ def handle_degree(equation_list):
     print("Polynomial degree:", degree)
     if degree > 2:
         raise SystemExit('The polynomial degree is stricly greater than 2, I can\'t solve.')
+    if degree < 1:
+        raise SystemExit('The polynomial degree is smaller than 1, I can\'t solve. Bad input!')
     return degree

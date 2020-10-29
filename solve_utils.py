@@ -4,14 +4,14 @@ def get_a(equation_list):
     for term in equation_list:
         if term.degree == '2':
             return term.coeff
-    return None
+    return 0
 
 def get_b(equation_list):
     print('returning b')
     for term in equation_list:
         if term.degree == '1':
             return term.coeff
-    return None
+    return 0
 
 
 def get_c(equation_list):
@@ -19,7 +19,7 @@ def get_c(equation_list):
     for term in equation_list:
         if term.degree == '0':
             return term.coeff
-    return None
+    return 0
 
 
 def get_discriminant(a, b, c):
