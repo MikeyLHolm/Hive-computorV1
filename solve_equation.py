@@ -13,8 +13,8 @@ def solve_real_roots(a, b, discriminant):
     # x = -b +- D / 2a
     # x_1 = None
     # x_2 = None
-        x_1 = (-b + square_root(discriminant)) / (2 * a)
-        x_2 = (-b - square_root(discriminant)) / (2 * a)
+    x_1 = (-b + square_root(discriminant)) / (2 * a)
+    x_2 = (-b - square_root(discriminant)) / (2 * a)
     print(round(x_1, 6))
     print(round(x_2, 6))
 

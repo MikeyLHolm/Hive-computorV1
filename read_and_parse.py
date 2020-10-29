@@ -7,8 +7,10 @@ def plot_or_not():
         raise SystemExit('Plot graph? -answer must be either Y or N')
     return to_plot
 
+
 def read_input():
-    to_plot = plot_or_not()
+    #to_plot = plot_or_not()
+    to_plot = None
     if len(sys.argv) > 1:
         arg = sys.argv[1]
         return arg, to_plot

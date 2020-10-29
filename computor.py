@@ -14,13 +14,13 @@
 
 # TO DO:
 # add protection for float degrees
-#
+# fix 0 as coeff
 #
 
 import sys
 from degree import handle_degree, sort_get_degree
 from int_or_float import handle_int_or_float
-from object_related import get_list_of_objects
+from object_related import get_list_of_objects, clean_object_list
 from plotting import plot
 from read_and_parse import parse_input,read_input, remove_empty_items
 from reduced_form import reduced_form
@@ -39,7 +39,18 @@ def main():
     equation_list = get_list_of_objects(cleaned_left_list, cleaned_right_list)
     equation_list.sort(key=sort_get_degree, reverse=True)
 
+    for obv in equation_list:
+        print(obv.coeff, type(obv.coeff))
     handle_int_or_float(equation_list)
+    for obv in equation_list:
+        print(obv.coeff, type(obv.coeff))
+
+    cleaned_object_list = []
+    cleaned_object_list = clean_object_list(equation_list)
+    for obv in cleaned_object_list:
+        print(obv.coeff, type(obv.coeff))
+
+
     reduced_form(equation_list)
     degree = handle_degree(equation_list)
 

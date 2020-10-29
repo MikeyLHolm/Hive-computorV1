@@ -21,10 +21,7 @@ def get_coeff_and_degree(term):
                 degree = term[i + 1:]
     else:
         raise SystemExit('No X in a term, EXIT')
-    zero = '-0'
-    if coeff == zero:
-        print('rr')
-        coeff == '0'
+
     return coeff, degree
 
 
@@ -48,6 +45,19 @@ def handle_dupl_degree(object_list, term_object):
     return 0
 
 
+def handle_zero_coeff(coeff):
+    print('coeff is: ', coeff)
+    print('coeff type: ', type(coeff))
+    #print('coeff casted to int is: ', int(coeff))
+    #print('coeff type: ', type(int(coeff)))
+    return 1
+
+
+def clean_object_list(list):
+    cleaned_list = []
+    return cleaned_list
+
+
 def get_list_of_objects(left_data, right_data):
     object_list = []
     coeff = ""
@@ -55,11 +65,9 @@ def get_list_of_objects(left_data, right_data):
 
     for data in left_data:
         coeff, degree = get_coeff_and_degree(data)
-        print(coeff, degree)
-        print(type(coeff))
-        if coeff == '0':
-            print('coeff 0')
-            continue
+        # if not handle_zero_coeff(coeff):
+        #     print('coeff 0')
+        #     continue
         term_object = get_term_object(coeff, degree)
         if not handle_dupl_degree(object_list, term_object):
             object_list.append(get_term_object(coeff, degree))
@@ -72,7 +80,4 @@ def get_list_of_objects(left_data, right_data):
         if not handle_dupl_degree(object_list, term_object):
             object_list.append(term_object)
 
-    #remove terms with coeff of 0
-    cleaned_object_list = [x for x in object_list if x.coeff != 0]
-
-    return cleaned_object_list
+    return object_list
