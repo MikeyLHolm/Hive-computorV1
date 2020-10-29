@@ -9,6 +9,7 @@
 # FROM SUBJECT:
 # python3 computor.py "5 * X^0 + 4 * X^1 - 9.3 * X^2 = 1 * X^0"
 # python3 computor.py "5 * X^0 + 4 * X^1 = 4 * X^0"
+# 42 * X^0 = 42 * X^0
 
 
 from reduced_form import reduced_form
@@ -24,8 +25,11 @@ x_2 = []
 
 
 def read_input():
-    arg = sys.argv[1] if len(sys.argv) > 1 else "somevalue"
-    return arg
+    if len(sys.argv) > 1:
+        arg = sys.argv[1]
+        return arg
+    else:
+        raise SystemExit('usage: python3 computor.py "[equation]"')
 
     # equation = input("Enter the equation: ")
     # return equation
@@ -34,16 +38,7 @@ def read_input():
 def parse_input(data):
     data = data.replace(" ", "").replace("^", "").replace("-", "+-")
     data = data.split("=")
-    #return 2 values thru left and right side
-    #return left_side(data[0]), right_side(data[1])
     return data[0].split("+"), data[1].split("+")
-
-
-def opposite_sign(term):
-    if term[0] == "-":
-        return term[1:]
-    else:
-        return ("-" + term)
 
 
 def remove_empty_items(list_name):
@@ -51,7 +46,7 @@ def remove_empty_items(list_name):
     return cleaned_list
 
 
-  # add protection for 0 as coeff.
+# add protection for 0 as coeff.
 def sort_get_degree(term):
     return (term.degree)
 
@@ -96,11 +91,11 @@ def handle_degree(equation_list):
     for obj in equation_list:
         if int(obj.degree) > degree:
             degree = int(obj.degree)
-        print(obj.coeff, 'X^', obj.degree)
 
     print("Polynomial degree:", degree)
     if degree > 2:
-        raise SystemExit("The polynomial degree is stricly greater than 2, I can't solve.")
+        raise SystemExit('The polynomial degree is stricly greater than 2, I can\'t solve.')
+    return degree
 
 
 def main():
@@ -116,22 +111,13 @@ def main():
     print(cleaned_right_data)
 
     equation_list = []
-
     equation_list = get_list_of_objects(cleaned_left_data, cleaned_right_data)
     equation_list.sort(key=sort_get_degree, reverse=True)
 
-    #print (equation_list)
-    # save_terms_left(cleaned_left_data)
-    # save_terms_right(cleaned_right_data)
-    # print("constant", calc_constants())
-    # print("1st degree", calc_first_degree())
-    # print("2nd degree", calc_second_degree())
-    # print(square_root(25))
-    #sort_list_by_degree()
     handle_int_or_float(equation_list)
     reduced_form(equation_list)
-    handle_degree(equation_list)
-    solve_equation(equation_list)
+    degree = handle_degree(equation_list)
+    solve_equation(degree, equation_list)
 
 
 if __name__ == "__main__":

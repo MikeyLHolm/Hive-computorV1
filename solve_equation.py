@@ -45,58 +45,48 @@ def handle_discriminant(discriminant):
         return 0
 
 
-def solve_perfect_equation(a, b, discriminant):
-    # real roots
+def solve_real_roots(a, b, discriminant):
     # x = -b +- D / 2a
-    solution_1 = None
-    solution_2 = None
-    solution_1 = (-b + square_root(discriminant)) / (2 * a)
-    print(round(solution_1, 6))
-    solution_2 = (-b - square_root(discriminant)) / (2 * a)
-    print(round(solution_2, 6))
+    # real_root_1 = None
+    # real_root_2 = None
+    real_root_1 = (-b + square_root(discriminant)) / (2 * a)
+    real_root_2 = (-b - square_root(discriminant)) / (2 * a)
+    print(round(real_root_1, 6))
+    print(round(real_root_2, 6))
 
 
-def solve_one_solution(a, b):
+def solve_real_root(a, b):
     # x = -b / 2a
-    solution_1 = None
-    solution_1 = -b / (2 * a)
-    print('The solution is:', round(solution_1, 6))
+    real_root = None
+    real_root = -b / (2 * a)
+    print('The solution is:', round(real_root, 6))
 
 
-def solve_complex_roots(a, b, c, discriminant):
+def solve_complex_roots(a, b, discriminant):
     # when D < 0
-    print('solving complex things. add prime factorializations')
-    prime_factorization(a, b, discriminant)
+    print('solving complex things.')
+    discriminant *= -1
+    complex_root_1 = - b / (2 * a), ' + i', square_root(discriminant)
+    complex_root_2 = - b / (2 * a), ' - i', square_root(discriminant)
+    print(complex_root_1)
+    print(complex_root_2)
 
 
-def solve_equation(equation_list):
-    print('Hello, solving it now. BRB')
-
-    print('find type of the 3 possible')
-
-    print('get a b c')
+def solve_equation(degree, equation_list):
     a = get_a(equation_list)
     b = get_b(equation_list)
     c = get_c(equation_list)
     discriminant = get_discriminant(a, b, c)
-    # print('a =', a)
-    # print(type(a))
-    # print('b =', b)
-    # print(type(b))
-    # print('c =', c)
-    # print(type(c))
-    print('discriminant is:', discriminant)
-    # print(type(discriminant))
     solution_type = handle_discriminant(discriminant)
     if solution_type == 2:
         print('solution for type1 ( 2 solutions ):')
-        solve_perfect_equation(a, b, discriminant)
+        solve_real_roots(a, b, discriminant)
     elif solution_type == 1:
         print('solution for type2 ( 1 solutions ):')
-        solve_one_solution(a, b)
+        solve_real_root(a, b)
     elif solution_type == 0:
         print('solution for type3 ( 0 solutions ):')
-        solve_complex_roots(a, b, c, discriminant)
+        solve_complex_roots(a, b, discriminant)
     else:
         print('WTF HAPPENED? BUG AT SOLUTIONS')
 
