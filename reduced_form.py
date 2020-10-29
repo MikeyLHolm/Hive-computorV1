@@ -16,6 +16,3 @@ def reduced_form(equation_list):
 
     reduced_form = reduced_form + ' = 0'
     print(reduced_form)
-
-
-
