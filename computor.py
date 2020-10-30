@@ -35,29 +35,23 @@ def main():
     print(cleaned_left_list)
     print(cleaned_right_list)
 
-    equation_list = []
-    equation_list = get_list_of_objects(cleaned_left_list, cleaned_right_list)
-    equation_list.sort(key=sort_get_degree, reverse=True)
+    object_list = []
+    object_list = get_list_of_objects(cleaned_left_list, cleaned_right_list)
+    object_list.sort(key=sort_get_degree, reverse=True)
 
-    for obv in equation_list:
-        print(obv.coeff, type(obv.coeff))
-    handle_int_or_float(equation_list)
-    for obv in equation_list:
-        print(obv.coeff, type(obv.coeff))
+    handle_int_or_float(object_list)
 
     cleaned_object_list = []
-    cleaned_object_list = clean_object_list(equation_list)
-    for obv in cleaned_object_list:
-        print(obv.coeff, type(obv.coeff))
+    cleaned_object_list = clean_object_list(object_list)
 
-
-    reduced_form(equation_list)
-    degree = handle_degree(equation_list)
+    reduced_form(cleaned_object_list)
+    degree = handle_degree(cleaned_object_list)
 
     abc = ()
-    abc = solve_equation(degree, equation_list)
+    abc = solve_equation(degree, cleaned_object_list)
     if to_plot == 'Y':
         plot(abc)
+
 
 if __name__ == "__main__":
     main()

@@ -27,6 +27,6 @@ def str_to_float_or_int(value_str, ShowExtended=False):
     return value
 
 
-def handle_int_or_float(equation_list):
-    for term in equation_list:
+def handle_int_or_float(object_list):
+    for term in object_list:
         term.coeff = str_to_float_or_int(str(term.coeff))

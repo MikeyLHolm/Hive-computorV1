@@ -1,13 +1,13 @@
 import sys
 
 
-def reduced_form(equation_list):
-    if not equation_list:
+def reduced_form(object_list):
+    if not object_list:
         raise SystemExit('Reduced form: 0 = 0. All the real numbers are the solution')
 
-    reduced_form = 'Reduced form: ' + str(equation_list[0].coeff) + ' * X^' + str(equation_list[0].degree)
+    reduced_form = 'Reduced form: ' + str(object_list[0].coeff) + ' * X^' + str(object_list[0].degree)
 
-    for term in equation_list[1:]:
+    for term in object_list[1:]:
         sign = ' + '
         if float(term.coeff) < 0:
             sign = ' - '

@@ -37,10 +37,10 @@ def solve_complex_roots(a, b, discriminant):
     print(round(x_2, 6))
 
 
-def solve_equation(degree, equation_list):
-    a = get_a(equation_list)
-    b = get_b(equation_list)
-    c = get_c(equation_list)
+def solve_equation(degree, object_list):
+    a = get_a(object_list)
+    b = get_b(object_list)
+    c = get_c(object_list)
     abc = (a, b, c)
 
     if degree == 1:
