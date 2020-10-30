@@ -12,9 +12,11 @@ def handle_no_degree():
     pass
 
 
-def handle_complex_input():
-#     handle_zero_degree_form()
+def handle_complex_input(left_list, right_list):
+    left_list, right_list = handle_zero_degree_form(left_list, right_list)
+    print(right_list)
 #     handle_no_coeff() #no coeff = coeff=1
+    print(right_list)
 #     handle_no_degree() #no degree = degree=1
 #     remove_empty_items()
-    pass
+    return left_list, right_list

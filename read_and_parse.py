@@ -22,9 +22,9 @@ def read_input():
 
 
 def remove_empty_items(left_data, right_data):
-    cleaned_left_list = [x for x in left_data if x]
+    left_list = [x for x in left_data if x]
     cleared_right_list = [x for x in right_data if x]
-    return cleaned_left_list, cleared_right_list
+    return left_list, cleared_right_list
 
 
 def parse_input(data):

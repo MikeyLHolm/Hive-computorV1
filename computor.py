@@ -31,13 +31,14 @@ from solve_equation import solve_equation
 def main():
     data, to_plot = read_input()
     print(data)
-    cleaned_left_list, cleaned_right_list = parse_input(data)
-    #cleaned_left_list, cleaned_right_list = handle_zero_degree_form(cleaned_left_list, cleaned_right_list)
-    print(cleaned_left_list)
-    print(cleaned_right_list)
+    left_list, right_list = parse_input(data)
+    left_list, right_list = handle_complex_input(left_list, right_list)
+    #left_list, right_list = handle_zero_degree_form(left_list, right_list)
+    print(left_list)
+    print(right_list)
 
     object_list = []
-    object_list = get_list_of_objects(cleaned_left_list, cleaned_right_list)
+    object_list = get_list_of_objects(left_list, right_list)
     object_list.sort(key=sort_get_degree, reverse=True)
 
     handle_int_or_float(object_list)
