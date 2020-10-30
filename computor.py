@@ -29,7 +29,7 @@ from reduced_form import reduced_form
 from solve_equation import solve_equation
 
 
-def main():
+def solve():
     data, to_plot = read_input()
     print(data)
     left_list, right_list = parse_input(data)
@@ -53,6 +53,10 @@ def main():
     abc = solve_equation(degree, cleaned_object_list)
     if to_plot == 'Y':
         plot(abc)
+
+
+def main():
+    solve()
 
 
 if __name__ == "__main__":

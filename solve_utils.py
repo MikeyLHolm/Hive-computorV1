@@ -20,7 +20,7 @@ def get_c(object_list):
 
 
 def get_discriminant(a, b, c):
-    # b2 - 4ac
+    # D = b2 - 4ac
     d = b * b - 4 * a * c
     return d
 
@@ -34,5 +34,5 @@ def handle_discriminant(discriminant):
         return 1
     else:
         print('Discriminant is strictly negative, there is no real solutions.'
-              ' The two comples roots are:')
+              ' The two complex roots are:')
         return 0

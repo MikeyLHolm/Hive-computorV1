@@ -32,12 +32,6 @@ def handle_no_degree(left_list, right_list):
 
 def handle_complex_input(left_list, right_list):
     left_list, right_list = handle_zero_degree_form(left_list, right_list)
-    print(left_list)
-    print(right_list)
-    left_list, right_list = handle_no_coeff(left_list, right_list) #no coeff = coeff=1
-    print(left_list)
-    print(right_list)
-    left_list, right_list = handle_no_degree(left_list, right_list) #no degree = degree=1
-    print(left_list)
-    print(right_list)
+    left_list, right_list = handle_no_coeff(left_list, right_list)
+    left_list, right_list = handle_no_degree(left_list, right_list)
     return left_list, right_list
