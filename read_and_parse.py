@@ -21,19 +21,32 @@ def read_input():
     # return equation
 
 
-def parse_input(data):
-    data = data.replace(" ", "").replace("^", "").replace("-", "+-")
-    data = data.split("=")
-    return data[0].split("+"), data[1].split("+")
-
-
 def remove_empty_items(left_data, right_data):
     cleaned_left_list = [x for x in left_data if x]
     cleared_right_list = [x for x in right_data if x]
     return cleaned_left_list, cleared_right_list
 
 
+def parse_input(data):
+    data = data.replace(" ", "").replace("^", "").replace("-", "+-")
+    data = data.split("=")
+    print(data[0])
+    print(data[1])
+    left_data = data[0].split("+")
+    right_data = data[1].split("+")
+    left_data, right_data = remove_empty_items(left_data, right_data)
+    return left_data, right_data
+
+
 def handle_zero_degree_form(left_list, right_list):
     left_form_handled = [obj + '*X0' if not 'X' in obj.upper() else obj for obj in left_list]
     right_form_handled = [obj + '*X0' if not 'X' in obj.upper() else obj for obj in right_list]
     return left_form_handled, right_form_handled
+
+
+def handle_no_coeff():
+    pass
+
+
+def handle_no_degree():
+    pass

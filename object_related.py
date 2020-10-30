@@ -17,7 +17,6 @@ def get_term_object(coeff, degree):
 
 
 def get_coeff_and_degree(term):
-
     if term.upper().find("X") != -1:
         for i, c in enumerate(term):
             if c.upper() == 'X':
