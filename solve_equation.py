@@ -20,7 +20,6 @@ def solve_real_roots(a, b, discriminant):
 def solve_real_root(a, b):
     # x = -b / 2a
     x = round((-b / (2 * a)), 6)
-    print('The solution is:')
     print(x)
 
 

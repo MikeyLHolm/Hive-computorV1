@@ -14,6 +14,7 @@
 
 # TO DO:
 # add protection for float degrees
+# XX^2 etc?
 # fix 0 as coeff
 #
 
@@ -33,7 +34,6 @@ def main():
     print(data)
     left_list, right_list = parse_input(data)
     left_list, right_list = handle_complex_input(left_list, right_list)
-    #left_list, right_list = handle_zero_degree_form(left_list, right_list)
     print(left_list)
     print(right_list)
 
