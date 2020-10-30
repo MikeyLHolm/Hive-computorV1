@@ -11,8 +11,6 @@ def solve_degree_one(b, c):
 
 def solve_real_roots(a, b, discriminant):
     # x = -b +- D / 2a
-    # x_1 = None
-    # x_2 = None
     x_1 = (-b + square_root(discriminant)) / (2 * a)
     x_2 = (-b - square_root(discriminant)) / (2 * a)
     print(round(x_1, 6))
@@ -21,20 +19,20 @@ def solve_real_roots(a, b, discriminant):
 
 def solve_real_root(a, b):
     # x = -b / 2a
-    # x = None
-    x = -b / (2 * a)
+    x = round((-b / (2 * a)), 6)
     print('The solution is:')
-    print(round(x, 6))
+    print(x)
 
 
 def solve_complex_roots(a, b, discriminant):
     # when D < 0
-    print('solving complex things.')
     discriminant *= -1
-    x_1 = - b / (2 * a), ' + i', square_root(discriminant)
-    x_2 = - b / (2 * a), ' - i', square_root(discriminant)
-    print(round(x_1, 6))
-    print(round(x_2, 6))
+    real_number = round(- b / (2 * a), 6)
+    non_zero_real_number = round(square_root(discriminant) / 2, 6)
+    x_1 = f'{real_number} + (i√{discriminant})/2 => {real_number} + i{non_zero_real_number}'
+    x_2 = f'{real_number} - (i√{discriminant})/2 => {real_number} - i{non_zero_real_number}'
+    print(x_1)
+    print(x_2)
 
 
 def solve_equation(degree, object_list):
@@ -50,13 +48,10 @@ def solve_equation(degree, object_list):
         solution_type = handle_discriminant(discriminant)
 
         if solution_type == 2:
-            print('solution for type1 ( 2 solutions ):')
             solve_real_roots(a, b, discriminant)
         elif solution_type == 1:
-            print('solution for type2 ( 1 solutions ):')
             solve_real_root(a, b)
         elif solution_type == 0:
-            print('solution for type3 ( 0 solutions ):')
             solve_complex_roots(a, b, discriminant)
         else:
             print('WTF HAPPENED? BUG AT SOLUTIONS')

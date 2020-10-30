@@ -27,12 +27,12 @@ def get_discriminant(a, b, c):
 
 def handle_discriminant(discriminant):
     if discriminant > 0:
-        print("Discriminant is strictly positive, the two solutions are:")
+        print('Discriminant is strictly positive, the two solutions are:')
         return 2
     elif discriminant == 0:
-        print("Discriminant is 0, the solution is:")
+        print('Discriminant is 0, the solution is:')
         return 1
     else:
-        print("Discriminant is strictly negative, there is no real solutions. \
-        The two comples roots are")
+        print('Discriminant is strictly negative, there is no real solutions.'
+              ' The two comples roots are:')
         return 0

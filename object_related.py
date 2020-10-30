@@ -7,6 +7,10 @@ class TermObject(object):
         self.degree = degree
 
 
+    def __str__(self):
+        return f'{self.coeff}X^{self.degree}'
+
+
 def get_term_object(coeff, degree):
     term = TermObject(coeff, degree)
     return term
@@ -35,7 +39,6 @@ def opposite_sign(term):
 
 
 def handle_dupl_degree(object_list, term_object):
-    # protect when coeff = 0
     for obj in object_list:
         if term_object.coeff == '0':
             return 1
@@ -48,7 +51,6 @@ def handle_dupl_degree(object_list, term_object):
 def clean_object_list(object_list):
     cleaned_list = []
     for obj in object_list:
-        print(obj.coeff)
         if obj.coeff != 0:
             cleaned_list.append(obj)
     return cleaned_list
