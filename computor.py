@@ -22,7 +22,7 @@ from degree import handle_degree, sort_get_degree
 from int_or_float import handle_int_or_float
 from object_related import get_list_of_objects, clean_object_list
 from plotting import plot
-from read_and_parse import parse_input,read_input, remove_empty_items
+from read_and_parse import handle_zero_degree_form, parse_input, read_input, remove_empty_items
 from reduced_form import reduced_form
 from solve_equation import solve_equation
 
@@ -32,6 +32,7 @@ def main():
     print(data)
     left_data, right_data = parse_input(data)
     cleaned_left_list, cleaned_right_list = remove_empty_items(left_data, right_data)
+    cleaned_left_list, cleaned_right_list = handle_zero_degree_form(cleaned_left_list, cleaned_right_list)
     print(cleaned_left_list)
     print(cleaned_right_list)
 
