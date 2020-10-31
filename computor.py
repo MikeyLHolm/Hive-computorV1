@@ -19,40 +19,7 @@
 #
 
 import sys
-from degree import handle_degree, sort_get_degree
-from handle_complex_input import handle_complex_input
-from int_or_float import handle_int_or_float
-from object_related import get_list_of_objects, clean_object_list
-from plotting import plot
-from read_and_parse import handle_zero_degree_form, parse_input, read_input, remove_empty_items
-from reduced_form import reduced_form
-from solve_equation import solve_equation
-
-
-def solve():
-    data, to_plot = read_input()
-    print(data)
-    left_list, right_list = parse_input(data)
-    left_list, right_list = handle_complex_input(left_list, right_list)
-    print(left_list)
-    print(right_list)
-
-    object_list = []
-    object_list = get_list_of_objects(left_list, right_list)
-    object_list.sort(key=sort_get_degree, reverse=True)
-
-    handle_int_or_float(object_list)
-
-    cleaned_object_list = []
-    cleaned_object_list = clean_object_list(object_list)
-
-    reduced_form(cleaned_object_list)
-    degree = handle_degree(cleaned_object_list)
-
-    abc = ()
-    abc = solve_equation(degree, cleaned_object_list)
-    if to_plot == 'Y':
-        plot(abc)
+from src.solver import solve
 
 
 def main():
