@@ -38,15 +38,15 @@ def parse_input(data):
     return left_data, right_data
 
 
-def handle_zero_degree_form(left_list, right_list):
-    left_form_handled = [obj + '*X0' if not 'X' in obj.upper() else obj for obj in left_list]
-    right_form_handled = [obj + '*X0' if not 'X' in obj.upper() else obj for obj in right_list]
-    return left_form_handled, right_form_handled
+# def handle_zero_degree_form(left_list, right_list):
+#     left_form_handled = [obj + '*X0' if not 'X' in obj.upper() else obj for obj in left_list]
+#     right_form_handled = [obj + '*X0' if not 'X' in obj.upper() else obj for obj in right_list]
+#     return left_form_handled, right_form_handled
 
 
-def handle_no_coeff():
-    pass
+# def handle_no_coeff():
+#     pass
 
 
-def handle_no_degree():
-    pass
+# def handle_no_degree():
+#     pass
