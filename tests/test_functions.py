@@ -1,16 +1,59 @@
 import unittest
+from src.degree import handle_degree
+from src.handle_complex_input import handle_no_coeff, handle_no_degree, handle_zero_degree_form
 from src.int_or_float import str_to_float_or_int
-from src.object_related import opposite_sign
+from src.object_related import opposite_sign, TermObject
 
 
-class TestCoolFunction(unittest.TestCase):
+class TestDegree(unittest.TestCase):
 
-    def test_opposite_sign(self):
-        print('\ntest_opposite_sign')
-        self.assertEqual(opposite_sign('-9'), '9')
-        self.assertEqual(opposite_sign('-0'), '0')
-        self.assertEqual(opposite_sign('0'), '0')
+    def setUp(self):
+        self.object_list = []
+        self.obj1 = TermObject(2, 1)
+        self.obj2 = TermObject(3, 2)
+        self.obj3 = TermObject(0, 5)
+        self.obj4 = TermObject(-3, 1)
+        self.object_list.append(self.obj1)
+        self.object_list.append(self.obj2)
+        self.object_list.append(self.obj3)
+        self.object_list.append(self.obj4)
 
+
+    def test_list_object(self):
+        print('\ntest_list_object')
+        self.assertEqual(self.object_list[0].coeff, 2)
+        self.assertEqual(self.object_list[0].degree, 1)
+        self.assertEqual(self.object_list[1].coeff, 3)
+        self.assertEqual(self.object_list[1].degree, 2)
+        self.assertEqual(self.object_list[2].coeff, 0)
+        self.assertEqual(self.object_list[2].degree, 5)
+        self.assertEqual(self.object_list[3].coeff, -3)
+        self.assertEqual(self.object_list[3].degree, 1)
+
+
+    def test_handle_degree(self):
+        print('\ntest_handle_degree')
+        with self.assertRaises(SystemExit) as cm:
+            handle_degree(self.object_list)
+        error_message = cm.exception.args[0]
+        self.assertEqual('The polynomial degree is stricly greater than 2, I can\'t solve.', error_message)
+
+        self.object_list[2].degree = 0
+
+        self.assertEqual(handle_degree(self.object_list), 2)
+
+        self.object_list[0].degree = -10
+        self.object_list[1].degree = -32
+        self.object_list[2].degree = -1
+        self.object_list[3].degree = 0
+
+        with self.assertRaises(SystemExit) as cm:
+            handle_degree(self.object_list)
+        error_message = cm.exception.args[0]
+        self.assertEqual('The polynomial degree is smaller than 1, I can\'t solve. Check your equation!', error_message)
+
+
+class TestIntOrFloat(unittest.TestCase):
 
     def test_str_to_float_or_int(self):
         print('\ntest_str_to_float_or_int')
@@ -25,3 +68,51 @@ class TestCoolFunction(unittest.TestCase):
         self.assertIsInstance(str_to_float_or_int('-123.00000000'), int)
         self.assertIsInstance(str_to_float_or_int('6'), int)
 
+
+class TestHandleComplexInput(unittest.TestCase):
+
+    def setUp(self):
+        self.object_list1 = ['3', '-2*X2', '4*X1']
+        self.object_list2 = ['-2', '6*X2', '14*X1']
+
+
+    def test_handle_zero_degree_form(self):
+        print('\nhandle_zero_degree_form')
+        left_return, right_return = handle_zero_degree_form(self.object_list1, self.object_list2)
+        self.assertEqual(left_return, ['3*X0', '-2*X2', '4*X1'])
+        self.assertEqual(right_return, ['-2*X0', '6*X2', '14*X1'])
+
+        self.object_list1[0] = '0'
+        self.object_list2[0] = '-0'
+
+        left_return, right_return = handle_zero_degree_form(self.object_list1, self.object_list2)
+        self.assertEqual(left_return, ['0*X0', '-2*X2', '4*X1'])
+        self.assertEqual(right_return, ['-0*X0', '6*X2', '14*X1'])
+
+
+    # def test_handle_zero_degree_form(self):
+    #     print('\nhandle_zero_degree_form')
+        left_return, right_return = handle_zero_degree_form(self.object_list1, self.object_list2)
+        self.assertEqual(left_return, ['3*X0', '-2*X2', '4*X1'])
+        self.assertEqual(right_return, ['-2*X0', '6*X2', '14*X1'])
+
+        self.object_list1[0] = '0'
+        self.object_list2[0] = '-0'
+
+        left_return, right_return = handle_zero_degree_form(self.object_list1, self.object_list2)
+        self.assertEqual(left_return, ['0*X0', '-2*X2', '4*X1'])
+        self.assertEqual(right_return, ['-0*X0', '6*X2', '14*X1'])
+
+    # def test_handle_zero_degree_form(self):
+    #     print('\nhandle_zero_degree_form')
+
+
+    # def test_handle_zero_degree_form(self):
+    #     print('\nhandle_zero_degree_form')
+
+
+    # def test_opposite_sign(self):
+    #     print('\ntest_opposite_sign')
+    #     self.assertEqual(opposite_sign('-9'), '9')
+    #     self.assertEqual(opposite_sign('-0'), '0')
+    #     self.assertEqual(opposite_sign('0'), '0')
