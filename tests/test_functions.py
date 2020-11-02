@@ -151,6 +151,39 @@ class TestMathFunctions(unittest.TestCase):
         self.assertEqual('n is smaller than 0. Can\'t solve sqrt.', error_message)
 
 
-# class TestSolveEquation(unittest.TestCase):
+def reduced_form(object_list):
+            if not object_list:
+                raise SystemExit('Reduced form: 0 = 0. All real numbers are the solution')
 
-#     def test_
+            reduced_form = 'Reduced form: ' + str(round(object_list[0].coeff, 6)) + ' * X^' + str(object_list[0].degree)
+
+            for term in object_list[1:]:
+                sign = ' + '
+                if float(term.coeff) < 0:
+                    sign = ' - '
+                reduced_form = reduced_form + sign + str(round(term.coeff, 6)).strip('-') + ' * X^' + str(term.degree)
+
+            reduced_form = reduced_form + ' = 0'
+            return(reduced_form)
+
+
+class TestReducedForm(unittest.TestCase):
+
+    def setUp(self):
+        self.object_list1 = []
+        self.object_list2 = []
+        self.object1 = TermObject(-8343.1273123, 1)
+        self.object2 = TermObject(-0.5441300000000098, 0)
+        self.object_list1.append(self.object1)
+        self.object_list1.append(self.object2)
+        self.object3 = TermObject(-6.99, 2)
+        self.object4 = TermObject(13.04, 1)
+        self.object5 = TermObject(7.99, 0)
+        self.object_list2.append(self.object3)
+        self.object_list2.append(self.object4)
+        self.object_list2.append(self.object5)
+
+
+    def test_reduced_form(self):
+        self.assertEqual(reduced_form(self.object_list1), 'Reduced form: -8343.127312 * X^1 - 0.54413 * X^0 = 0')
+        self.assertEqual(reduced_form(self.object_list2), 'Reduced form: -6.99 * X^2 + 13.04 * X^1 + 7.99 * X^0 = 0')
