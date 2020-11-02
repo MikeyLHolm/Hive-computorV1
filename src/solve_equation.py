@@ -26,10 +26,11 @@ def solve_real_root(a, b):
 def solve_complex_roots(a, b, discriminant):
     # when D < 0
     discriminant *= -1
-    real_number = round(- b / (2 * a), 6)
-    non_zero_real_number = round(square_root(discriminant) / 2, 6)
-    x_1 = f'{real_number} + (i√{discriminant})/2 => {real_number} + i{non_zero_real_number}'
-    x_2 = f'{real_number} - (i√{discriminant})/2 => {real_number} - i{non_zero_real_number}'
+    divider = 2 * a
+    real_number = round(- b / divider, 6)
+    non_zero_real_number = round(square_root(discriminant) / divider, 6)
+    x_1 = f'{real_number} + (i√{discriminant})/{divider} => {real_number} + i{non_zero_real_number}'
+    x_2 = f'{real_number} - (i√{discriminant})/{divider} => {real_number} - i{non_zero_real_number}'
     print(x_1)
     print(x_2)
 

@@ -3,7 +3,7 @@ from src.handle_complex_input import handle_complex_input
 from src.int_or_float import handle_int_or_float
 from src.object_related import get_list_of_objects, clean_object_list
 from src.plotting import plot
-from src.read_and_parse import handle_zero_degree_form, parse_input, read_input, remove_empty_items
+from src.read_and_parse import parse_input, read_input, remove_empty_items
 from src.reduced_form import reduced_form
 from src.solve_equation import solve_equation
 
