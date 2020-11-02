@@ -7,18 +7,18 @@ def handle_zero_degree_form(left_list, right_list):
 def handle_no_coeff(left_list, right_list):
     for i, obj in enumerate(left_list):
         if obj[0] == '-':
-            if obj[1:].upper() == 'X':
-                left_list[i] = '-1*X'
+            if obj[1].upper() == 'X':
+                left_list[i] = '-1*' + obj[1:]
         else:
-            if obj.upper() == 'X':
+            if obj[0].upper() == 'X':
                 left_list[i] = '1*' + obj
 
     for i, obj in enumerate(right_list):
         if obj[0] == '-':
-            if obj[1:].upper() == 'X':
-                right_list[i] = '-1*X'
+            if obj[1].upper() == 'X':
+                right_list[i] = '-1*' + obj[1:]
         else:
-            if obj.upper() == 'X':
+            if obj[0].upper() == 'X':
                 right_list[i] = '1*' + obj
 
     return left_list, right_list

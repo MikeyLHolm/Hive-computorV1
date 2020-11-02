@@ -3,6 +3,7 @@ from src.degree import handle_degree
 from src.handle_complex_input import handle_no_coeff, handle_no_degree, handle_zero_degree_form
 from src.int_or_float import str_to_float_or_int
 from src.object_related import opposite_sign, TermObject
+from src.square_root import square_root
 
 
 class TestDegree(unittest.TestCase):
@@ -77,7 +78,7 @@ class TestHandleComplexInput(unittest.TestCase):
 
 
     def test_handle_zero_degree_form(self):
-        print('\nhandle_zero_degree_form')
+        print('\ntest_handle_zero_degree_form')
         left_return, right_return = handle_zero_degree_form(self.object_list1, self.object_list2)
         self.assertEqual(left_return, ['3*X0', '-2*X2', '4*X1'])
         self.assertEqual(right_return, ['-2*X0', '6*X2', '14*X1'])
@@ -90,29 +91,47 @@ class TestHandleComplexInput(unittest.TestCase):
         self.assertEqual(right_return, ['-0*X0', '6*X2', '14*X1'])
 
 
-    # def test_handle_zero_degree_form(self):
-    #     print('\nhandle_zero_degree_form')
-        left_return, right_return = handle_zero_degree_form(self.object_list1, self.object_list2)
-        self.assertEqual(left_return, ['3*X0', '-2*X2', '4*X1'])
-        self.assertEqual(right_return, ['-2*X0', '6*X2', '14*X1'])
+    def test_handle_no_coeff(self):
+        print('\ntest_handle_no_coeff')
 
-        self.object_list1[0] = '0'
-        self.object_list2[0] = '-0'
+        self.object_list1[0] = 'X0'
+        self.object_list1[1] = 'X1'
+        self.object_list1[2] = '-X2'
+        self.object_list2[0] = 'X2'
+        self.object_list2[1] = '-X1'
+        self.object_list2[2] = '-X0'
 
-        left_return, right_return = handle_zero_degree_form(self.object_list1, self.object_list2)
-        self.assertEqual(left_return, ['0*X0', '-2*X2', '4*X1'])
-        self.assertEqual(right_return, ['-0*X0', '6*X2', '14*X1'])
-
-    # def test_handle_zero_degree_form(self):
-    #     print('\nhandle_zero_degree_form')
+        left_return, right_return = handle_no_coeff(self.object_list1, self.object_list2)
+        self.assertEqual(left_return, ['1*X0', '1*X1', '-1*X2'])
+        self.assertEqual(right_return, ['1*X2', '-1*X1', '-1*X0'])
 
 
-    # def test_handle_zero_degree_form(self):
-    #     print('\nhandle_zero_degree_form')
+    def test_handle_no_degree(self):
+        print('\ntest_handle_no_degree')
+
+        self.object_list1[0] = '12*X0'
+        self.object_list1[1] = '6*X'
+        self.object_list1[2] = '-2*X2'
+        self.object_list2[0] = '5*X2'
+        self.object_list2[1] = '-5*X'
+        self.object_list2[2] = '-8*X0'
+
+        left_return, right_return = handle_no_degree(self.object_list1, self.object_list2)
+        self.assertEqual(left_return, ['12*X0', '6*X1', '-2*X2'])
+        self.assertEqual(right_return, ['5*X2', '-5*X1', '-8*X0'])
+
+        self.object_list1[1] = '0*X'
+        self.object_list2[1] = '-0*X'
+
+        left_return, right_return = handle_no_degree(self.object_list1, self.object_list2)
+        self.assertEqual(left_return, ['12*X0', '0*X1', '-2*X2'])
+        self.assertEqual(right_return, ['5*X2', '-0*X1', '-8*X0'])
 
 
-    # def test_opposite_sign(self):
-    #     print('\ntest_opposite_sign')
-    #     self.assertEqual(opposite_sign('-9'), '9')
-    #     self.assertEqual(opposite_sign('-0'), '0')
-    #     self.assertEqual(opposite_sign('0'), '0')
+class TestMathFunctions(unittest.TestCase):
+
+    def test_opposite_sign(self):
+        print('\ntest_opposite_sign')
+        self.assertEqual(opposite_sign('-9'), '9')
+        self.assertEqual(opposite_sign('-0'), '0')
+        self.assertEqual(opposite_sign('0'), '0')
