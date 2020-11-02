@@ -6,6 +6,8 @@ eval form:
 "6 * X ^ 0 + 11 * X ^ 1 + 5 * X ^ 2 = 1 * X ^ 0 + 1 * X ^ 1"
 "5 * X ^ 0 + 3 * X ^ 1 + 3 * X ^ 2 = 1 * X ^ 0 + 0 * X ^ 1"
 
+Subject: "5 * X^0 + 4 * X^1 - 9.3 * X^2 = 1 * X^0"
+
 other tests:
 "6 * X ^ 0 + 1 * X ^ 2 = 6 * X ^ 0"
 
@@ -15,8 +17,32 @@ other tests:
 [x] An absent coefficient ("X ^ 6") is considered to be equal to 1.
 [x] The powers can be in an arbitrary order, possibly repeated.`
 
-[] fix float at degree.
-[] X2 = 0 ==> x = 0
-[] 9x2 - 3 = -152 ==> x =  +- (i sqrt(-149))/3
-[] (x - 3)2 = 2 => 3 +- sqrt(2)
-[] (x + 1)2 = 3 => -1 +- sqrt(3)
+[x] fix float at degree.
+[x] X2 = 0 ==> x = 0
+[x] 9x2 - 3 = -152 ==> x =  +- (i sqrt(-149))/3
+[x] (x - 3)2 = 2 => x^2-6*x+9=2 => 3 +- sqrt(2)
+[x] (x + 1)2 = 3 => x^2+2*x−2=0 => -1 +- sqrt(3)
+
+# "5 * X^0 + 4 * X^1 - 9.3 * X^2 = 1 * X^0 - 3 * X^2"
+# 1 * X^2 + 2 * X^1 - 3 * X^0 = 0
+# python3 computor.py "8 * X^0 - 6 * X^1 + 0 * X^2 - 5.6 * X^3 = 3 * X^0"
+# python3 computor.py "2 * X^0 + 4 * X^1 + 2 * X^2 = 0" ==> -1.0
+# 2 * X^0 + 4 * X^1 + 2 * X^2 = 0
+
+# FROM SUBJECT:
+# python3 computor.py "5 * X^0 + 4 * X^1 - 9.3 * X^2 = 1 * X^0"
+# python3 computor.py "5 * X^0 + 4 * X^1 = 4 * X^0"
+# 42 * X^0 = 42 * X^0
+
+
+[] add protection for float degrees
+[x] XX^2 etc? - not needed as input will be valid
+[] fix 0 as coeff
+#
+[] Add biggest common denominator?
+    (def gcd(x, y):
+        while y != 0:
+            (x, y) = (y, x % y)
+        return x)
+
+        x2−6x+9

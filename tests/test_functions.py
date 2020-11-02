@@ -150,3 +150,7 @@ class TestMathFunctions(unittest.TestCase):
         error_message = cm.exception.args[0]
         self.assertEqual('n is smaller than 0. Can\'t solve sqrt.', error_message)
 
+
+# class TestSolveEquation(unittest.TestCase):
+
+#     def test_

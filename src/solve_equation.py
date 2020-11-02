@@ -11,8 +11,9 @@ def solve_degree_one(b, c):
 
 def solve_real_roots(a, b, discriminant):
     # x = -b +- D / 2a
-    x_1 = (-b + square_root(discriminant)) / (2 * a)
-    x_2 = (-b - square_root(discriminant)) / (2 * a)
+    divider = 2 * a
+    x_1 = (-b + square_root(discriminant)) / divider
+    x_2 = (-b - square_root(discriminant)) / divider
     print(round(x_1, 6))
     print(round(x_2, 6))
 

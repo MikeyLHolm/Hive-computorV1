@@ -10,9 +10,9 @@ def plotting(abc):
     y = abc[0] * x**2 + abc[1] * x + abc[2]
 
     plt.plot(x, y)
+    plt.grid()
     plt.show()
 
 
 def plot(abc):
-    #sort function to right form
     plotting(abc)
