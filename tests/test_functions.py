@@ -135,3 +135,18 @@ class TestMathFunctions(unittest.TestCase):
         self.assertEqual(opposite_sign('-9'), '9')
         self.assertEqual(opposite_sign('-0'), '0')
         self.assertEqual(opposite_sign('0'), '0')
+
+
+    def test_square_root(self):
+        print('\ntest_square_root')
+        self.assertEqual(square_root(25), 5)
+        self.assertEqual(square_root(1), 1)
+        self.assertEqual(square_root(625), 25)
+        self.assertEqual(round(square_root(8), 6), 2.828427)
+        self.assertEqual(round(square_root(12.6), 6), 3.549648)
+
+        with self.assertRaises(SystemExit) as cm:
+            square_root(-25)
+        error_message = cm.exception.args[0]
+        self.assertEqual('n is smaller than 0. Can\'t solve sqrt.', error_message)
+
