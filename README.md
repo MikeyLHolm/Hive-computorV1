@@ -5,8 +5,8 @@ A Hive school procject to write a program that solves a polynomial equation of d
 
 Clone repo and enter dir:
 ```
-https://github.com/MikeyLHolm/Hive-computorV1.git
-cd Hive-computorV1
+git clone https://github.com/MikeyLHolm/Hive-computorV1.git computorV1
+cd computorV1
 ```
 Run the program:
 ```
