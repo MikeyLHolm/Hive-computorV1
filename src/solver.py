@@ -10,11 +10,8 @@ from src.solve_equation import solve_equation
 
 def solve():
     data, to_plot = read_input()
-    print(data)
     left_list, right_list = parse_input(data)
     left_list, right_list = handle_complex_input(left_list, right_list)
-    print(left_list)
-    print(right_list)
 
     object_list = []
     object_list = get_list_of_objects(left_list, right_list)

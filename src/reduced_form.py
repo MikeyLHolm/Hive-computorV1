@@ -2,8 +2,6 @@ import sys
 
 
 def reduced_form(object_list):
-
-    print('going thru object list')
     for term in object_list:
         print(term)
 

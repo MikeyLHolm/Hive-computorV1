@@ -9,15 +9,8 @@ def plot_or_not():
 
 
 def read_input():
-    to_plot = plot_or_not()
-    # to_plot = None
-    # if len(sys.argv) > 1:
-    #     arg = sys.argv[1]
-    #     return arg, to_plot
-    # else:
-    #     raise SystemExit('usage: python3 computor.py "[equation]"')
-
     equation = input("Enter the equation: ")
+    to_plot = plot_or_not()
     return equation, to_plot
 
 
@@ -30,8 +23,6 @@ def remove_empty_items(left_data, right_data):
 def parse_input(data):
     data = data.replace(" ", "").replace("^", "").replace("-", "+-")
     data = data.split("=")
-    print(data[0])
-    print(data[1])
     left_data = data[0].split("+")
     right_data = data[1].split("+")
     left_data, right_data = remove_empty_items(left_data, right_data)

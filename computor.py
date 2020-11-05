@@ -8,6 +8,8 @@ def main():
         solve()
     except KeyboardInterrupt:
         print('\nKeyboardInterrupt handled')
+    except:
+        print('Form issue in equation.')
 
 
 if __name__ == "__main__":
