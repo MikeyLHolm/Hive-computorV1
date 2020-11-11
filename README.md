@@ -1,6 +1,8 @@
 # Hive-computorV1
 A Hive school procject to write a program that solves a polynomial equation of degree less than or equal to 2. 2nd degree polynomial can be called also quadratic equation.
 
+![computor_v1 graph](https://github.com/MikeyLHolm/Hive-computorV1/blob/master/computorv1.png "Upward opening parabola")
+
 ## How to use:
 
 Clone repo and enter dir:
